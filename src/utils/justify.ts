@@ -6,7 +6,7 @@ export default class Justify {
     constructor() {}
     
     justifyLine(line: string): string {
-        const words = line.split(" ");
+        const words = line.split(' ');
         const numberOfWord = words.length
         const spaceNeeded = JUSTIFY_SIZE - (line.length - numberOfWord - 1);
     
@@ -21,11 +21,11 @@ export default class Justify {
             extraSpaceNeeded--;
         }
     
-        return justifiedLine.trimEnd()
+        return justifiedLine.trim()
     }
 
     private justifyParagraph(paragraph: string): string {
-        const words = paragraph.split(" ");
+        const words = paragraph.split(' ');
     
         var justifiedParagraph = "";
         var line = "";
@@ -35,11 +35,11 @@ export default class Justify {
             if ((line.length + words[i].length) <= JUSTIFY_SIZE) {
                 line += words[i] + ' ';
             } else {
-                justifiedParagraph += this.justifyLine(line.trimEnd()) + '\n';
+                justifiedParagraph += this.justifyLine(line.trim()) + '\n';
                 line = words[i] + ' ';
             }
         }
-        justifiedParagraph += line.trimEnd()
+        justifiedParagraph += line.trim()
         return justifiedParagraph
     }
 
