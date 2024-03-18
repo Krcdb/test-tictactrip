@@ -1,9 +1,13 @@
-import { justifyText } from "../utils/justify"
+import Justify from "../utils/justify"
 
 
 export default class JustifyService {
 
-    constructor() {}
+    private justify: Justify;
+
+    constructor() {
+        this.justify = new Justify();
+    }
     
     justifyText(userEmail: string, textToJustify: string): string {
         //TODO
@@ -15,7 +19,7 @@ export default class JustifyService {
         -save the newWordCount + previous wordCount
         -return justified text
         */
-        const justifiedText = justifyText(textToJustify)
+        const justifiedText = this.justify.justifyText(textToJustify)
         console.log("\n\njustfied text : \n" + justifiedText)
         return justifiedText
     }
