@@ -5,7 +5,7 @@ export default class Justify {
 
     constructor() {}
     
-    justifyLine(line: string): string {
+    private justifyLine(line: string): string {
         const words = line.split(' ');
         const numberOfWord = words.length
         const spaceNeeded = JUSTIFY_SIZE - (line.length - numberOfWord - 1);
