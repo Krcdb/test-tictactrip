@@ -1,4 +1,5 @@
 import JustifyService from "../services/justify.service";
+import { Request, Response } from "express";
 
 
 export default class JustifyController {
@@ -9,10 +10,10 @@ export default class JustifyController {
         this.justifyService = new JustifyService();
     }
     
-    justifyText = (req: any, res: any) => {
+    justifyText = (req: Request, res: Response) => {
         try {
-            const { token, text } = req.body;
-            const justifiedText = this.justifyService.justifyText(token, text)
+            const text = req.body;
+            const justifiedText = this.justifyService.justifyText("token", text)
             return res.send(justifiedText);
         } catch (err) {
             console.log(err);
