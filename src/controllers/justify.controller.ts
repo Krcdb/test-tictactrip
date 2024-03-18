@@ -12,8 +12,8 @@ export default class JustifyController {
     
     justifyText = (req: Request, res: Response) => {
         try {
-            const { token, text } = req.body;
-            const justifiedText = this.justifyService.justifyText(token, text)
+            const text = req.body;
+            const justifiedText = this.justifyService.justifyText("token", text)
             return res.send(justifiedText);
         } catch (err) {
             console.log(err);

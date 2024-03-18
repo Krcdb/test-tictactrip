@@ -1,6 +1,7 @@
 import express from "express"
 import * as dotevnv from "dotenv"
 import cors from "cors"
+import bodyParser from "body-parser"
 
 const justifyRouter = require('./routes/justify.route')
 
@@ -9,6 +10,7 @@ dotevnv.config()
 const app = express()
 
 app.use(express.json())
+app.use(express.text())
 app.use(express.urlencoded({extended : true}))
 app.use(cors())
 
