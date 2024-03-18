@@ -1,3 +1,4 @@
+import { justifyText } from "../utils/justify"
 
 
 export default class JustifyService {
@@ -14,7 +15,9 @@ export default class JustifyService {
         -save the newWordCount + previous wordCount
         -return justified text
         */
-       return textToJustify + "test"
+        const justifiedText = justifyText(textToJustify)
+        console.log("\n\njustfied text : \n" + justifiedText)
+        return justifiedText
     }
 }
 
