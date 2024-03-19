@@ -5,6 +5,7 @@ import bodyParser from "body-parser"
 import { connectToDatabase } from "./config/config.database"
 
 const justifyRouter = require('./routes/justify.route')
+const authenticationRouter = require('./routes/authentication.route')
 
 dotevnv.config()
 
@@ -17,6 +18,7 @@ app.use(cors())
 
 
 app.use('/api/justify', justifyRouter)
+app.use('/api/token', authenticationRouter)
 
 const PORT = process.env.PORT || 3000;
 
