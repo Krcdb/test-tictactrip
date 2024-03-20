@@ -10,6 +10,10 @@ export default class Justify {
         const numberOfWord = words.length
         const spaceNeeded = JUSTIFY_SIZE - (line.length - numberOfWord - 1);
     
+        if (numberOfWord == 1) {
+            return words[0];
+        }
+
         const constantSpaceBetweenWord = Math.floor(spaceNeeded / (numberOfWord - 1));
         var extraSpaceNeeded = spaceNeeded % (numberOfWord - 1);
     
@@ -57,5 +61,13 @@ export default class Justify {
         }
     
         return justifiedText
+    }
+
+    checkIfTextValid(words: string[]): boolean {
+        for (var i = 0; i < words.length; i++) {
+            if (words[i].length > 80)
+                return false
+        }
+        return true
     }
 }
