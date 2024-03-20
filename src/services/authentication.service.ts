@@ -1,3 +1,4 @@
+import EmailAlreadyUseError from '../errors/emailAlreadyUse.error';
 import { User } from '../models/user'
 import AuthenticationUtils from '../utils/authentication.utils';
 
@@ -14,7 +15,7 @@ export default class AuthenticationService {
         try {
             const user = await User.findOne({email: userEmail})
             if (user) {
-                throw Error("this email is already used")
+                throw new EmailAlreadyUseError("this email is already used")
             }
             const token = this.authenticationUtils.generateJwtToken({email: userEmail})
             var newUser = User.build({
@@ -30,9 +31,13 @@ export default class AuthenticationService {
             newUser.save();
 
             return token
-        } catch (error) {
-            console.log(`error : ${error}`)
-            throw Error("this email is already used")
+        } catch (err) {
+            if (err instanceof EmailAlreadyUseError) {
+                throw new EmailAlreadyUseError("this email is already used")
+            }
+            else {
+                throw Error("Error generating token")
+            }
         }
     }
 }
