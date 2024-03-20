@@ -13,7 +13,6 @@ export default class AuthenticationMiddeware {
     verifyJwt(req: Request, res: Response, next: NextFunction) {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1];
-        console.log("token = " + token)
         if (token == null) {
             return res.status(401).send('no token found');
         }
@@ -22,7 +21,6 @@ export default class AuthenticationMiddeware {
                 console.log(err);
                 return res.status(403).send(`token verification : ${err}`);
             }
-            console.log(`${user} verified`);
             next();
         })
     }
