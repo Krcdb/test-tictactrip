@@ -18,10 +18,8 @@ export default class JustifyService {
         const numberOfWords = words.length
 
         if (this.justifyUtils.checkIfTextValid(words) == false) {
-            console.log("word toot long")
             throw new WordTooLongError(`a word is more than 80 char`);
         }
-        console.log("pass")
         const user = await User.findOne({token: token});
         if (user == null) {
             throw new NoUserFoundError(`no user found for the token ${token}`);
