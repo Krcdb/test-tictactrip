@@ -4,6 +4,7 @@ import JustifyService from "../services/justify.service";
 import { Request, Response } from "express";
 import NoUserFoundError from "../errors/noUserFound.error";
 import NoTokenFoundError from "../errors/noTokenFound.error";
+import WordTooLongError from "../errors/wordTooLong.error";
 
 
 export default class JustifyController {
@@ -38,7 +39,13 @@ export default class JustifyController {
                 console.log(`${err.name} : ${err.message}`);
                 return res.status(204).json({Err: err.message});
             }
+            else if (err instanceof WordTooLongError) {
+                console.log(`${err.name} : ${err.message}`);
+                return res.status(400).json({Err: err.message});
+            }
             else {
+                if (err instanceof Error)
+                    console.log(err.message)
                 return res.status(500).json({ Error: err });
             }
         }
