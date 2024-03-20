@@ -14,7 +14,6 @@ export default class AuthenticationService {
         try {
             const user = await User.findOne({email: userEmail})
             if (user) {
-                console.log(user)
                 throw Error("this email is already used")
             }
             const token = this.authenticationUtils.generateJwtToken({email: userEmail})
