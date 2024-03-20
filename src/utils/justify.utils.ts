@@ -1,7 +1,7 @@
 const JUSTIFY_SIZE = 80
 
 
-export default class Justify {
+export default class JustifyUtils {
 
     constructor() {}
     

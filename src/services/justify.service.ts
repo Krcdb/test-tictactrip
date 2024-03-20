@@ -2,22 +2,22 @@ import DailyWordLimitExceededError from "../errors/dailyWordLimitExceeded.error"
 import NoUserFoundError from "../errors/noUserFound.error";
 import WordTooLongError from "../errors/wordTooLong.error";
 import { User } from "../models/user";
-import Justify from "../utils/justify"
+import JustifyUtils from "../utils/justify.utils"
 
 
 export default class JustifyService {
 
-    private justify: Justify;
+    private justifyUtils: JustifyUtils;
 
     constructor() {
-        this.justify = new Justify();
+        this.justifyUtils = new JustifyUtils();
     }
     
     justifyText = async(token: string, textToJustify: string): Promise<string> => {
         const words = textToJustify.split(' ')
         const numberOfWords = words.length
 
-        if (this.justify.checkIfTextValid(words) == false) {
+        if (this.justifyUtils.checkIfTextValid(words) == false) {
             console.log("word toot long")
             throw new WordTooLongError(`a word is more than 80 char`);
         }
@@ -37,7 +37,7 @@ export default class JustifyService {
             throw new DailyWordLimitExceededError(`This text would exceed your daily word limit. words left: ${80000 - user.dailyLimit.dailyWord}`)
         }
 
-        const justifiedText = this.justify.justifyText(textToJustify);
+        const justifiedText = this.justifyUtils.justifyText(textToJustify);
 
         user.dailyLimit.dailyWord += numberOfWords;
         user.save()
