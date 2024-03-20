@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import AuthenticationService from "../services/authentication.service";
+import EmailAlreadyUseError from "../errors/emailAlreadyUse.error";
 
 
 export default class AuthenticationController {
@@ -15,12 +16,15 @@ export default class AuthenticationController {
             const { email } = req.body;
             const token = await this.authenticationService.generateToken(email)
             return res.status(200).json({token: token});
-        } catch (error) {
-            console.log(error)
-            if (error instanceof Error)
-                return res.status(500).json({Error: error.message});
-            else 
+        } catch (err) {
+            console.log(err)
+            if (err instanceof EmailAlreadyUseError) {
+                console.log(`${err.name} : ${err.message}`);
+                return res.status(409).json({Err: err.message});
+            }
+            else {
                 return res.status(500)
+            }
         }
     }
     
