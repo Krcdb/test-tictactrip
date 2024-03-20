@@ -1,5 +1,6 @@
 import DailyWordLimitExceededError from "../errors/dailyWordLimitExceeded.error";
 import NoUserFoundError from "../errors/noUserFound.error";
+import WordTooLongError from "../errors/wordTooLong.error";
 import { User } from "../models/user";
 import Justify from "../utils/justify"
 
@@ -13,13 +14,18 @@ export default class JustifyService {
     }
     
     justifyText = async(token: string, textToJustify: string): Promise<string> => {
-        const numberOfWords = textToJustify.split(' ').length
+        const words = textToJustify.split(' ')
+        const numberOfWords = words.length
 
+        if (this.justify.checkIfTextValid(words) == false) {
+            console.log("word toot long")
+            throw new WordTooLongError(`a word is more than 80 char`);
+        }
+        console.log("pass")
         const user = await User.findOne({token: token});
         if (user == null) {
             throw new NoUserFoundError(`no user found for the token ${token}`);
         }
-
         const dayDate = new Date().toDateString()
 
         if (user.dailyLimit.date != dayDate) {
