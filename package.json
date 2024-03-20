@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
+    "start": "ts-node ./src/app.ts",
     "build": "tsc -p .",
     "test": "mocha -r tsconfig-paths/register -r ts-node/register \"./test/**/*.test.ts\"",
     "dev": "ts-node-dev --pretty --respawn ./src/app.ts"
