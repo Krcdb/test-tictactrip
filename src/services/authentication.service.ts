@@ -1,8 +1,5 @@
-import dotenv from 'dotenv'
 import { User } from '../models/user'
 import AuthenticationUtils from '../utils/authentication.utils';
-
-dotenv.config();
 
 
 export default class AuthenticationService {
