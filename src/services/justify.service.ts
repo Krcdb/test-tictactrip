@@ -38,7 +38,7 @@ export default class JustifyService {
         const justifiedText = this.justifyUtils.justifyText(textToJustify);
 
         user.dailyLimit.dailyWord += numberOfWords;
-        user.save()
+        await user.save()
         return justifiedText
     }
 }

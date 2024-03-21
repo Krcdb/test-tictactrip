@@ -28,7 +28,7 @@ export default class AuthenticationService {
                 }
             });
 
-            newUser.save();
+            await newUser.save();
 
             return token
         } catch (err) {
@@ -36,7 +36,7 @@ export default class AuthenticationService {
                 throw new EmailAlreadyUseError("this email is already used")
             }
             else {
-                throw Error("Error generating token")
+                throw Error("Error while generating token")
             }
         }
     }
