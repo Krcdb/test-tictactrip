@@ -1,3 +1,5 @@
+export const tokenTest = "cool-token-bro"
+
 export const bigInputText = 
 "Longtemps,              je me suis couché de bonne heure. Parfois, \
 à peine ma bougie éteinte, mes yeux se fermaient si vite que je n’avais \
