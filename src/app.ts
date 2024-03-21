@@ -11,12 +11,13 @@ dotevnv.config()
 
 const app = express()
 
+//setup express
 app.use(express.json())
 app.use(express.text())
 app.use(express.urlencoded({extended : true}))
 app.use(cors())
 
-
+//setup routes
 app.use('/api/justify', justifyRouter)
 app.use('/api/token', authenticationRouter)
 

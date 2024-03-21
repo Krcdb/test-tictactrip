@@ -10,6 +10,9 @@ const { JWT_ACCESS_TOKEN_SECRET } = process.env;
 export default class AuthenticationMiddeware {
     constructor() {}
 
+    /**
+    * Verifies the JWT token included in the request header.
+    */
     verifyJwt(req: Request, res: Response, next: NextFunction) {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1];
