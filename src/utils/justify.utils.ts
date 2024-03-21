@@ -36,6 +36,8 @@ export default class JustifyUtils {
         var numberOfWord = words.length;
     
         for (var i = 0; i < numberOfWord; i++) {
+            if (words[i].length == 0)
+                continue ;
             if ((line.length + words[i].length) <= JUSTIFY_SIZE) {
                 line += words[i] + ' ';
             } else {
