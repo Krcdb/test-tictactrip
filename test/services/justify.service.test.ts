@@ -54,7 +54,6 @@ describe("Justify service", async function() {
 
     it("test justifyText check NoUserFoundError",async function() {
         userMock.expects(("findOne")).resolves(null)
-        sinon.stub(user, "save").returns(undefined)
         
         sinon.stub(justifyUtils, "checkIfTextValid").returns(true)
 
