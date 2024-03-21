@@ -20,10 +20,18 @@ const newUser = User.build({
     }
 });
 
+var userMock;
 
-const userMock = sinon.mock(User)
+   
 
 describe("Authentication service", async function() {
+    beforeEach(function() {
+        userMock = sinon.mock(User)
+    })
+
+    afterEach(function() {
+        userMock.restore()
+    })
     /*it("test generateTokenAndSaveNewUser normal use",async function() {
         sinon.stub(User, "findOne").returns(null)
         sinon.stub(newUser, "save").returns(undefined)
