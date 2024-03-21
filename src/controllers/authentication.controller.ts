@@ -11,10 +11,13 @@ export default class AuthenticationController {
         this.authenticationService = new AuthenticationService();
     }
     
+    /**
+    * Handles the request to generate a token for the provided email.
+    */
     requestToken = async (req: Request, res: Response) => {
         try {
             const { email } = req.body;
-            const token = await this.authenticationService.generateToken(email)
+            const token = await this.authenticationService.generateTokenAndSaveNewUser(email)
             return res.status(200).json({token: token});
         } catch (err) {
             if (err instanceof EmailAlreadyUseError) {

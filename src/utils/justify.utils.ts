@@ -5,6 +5,9 @@ export default class JustifyUtils {
 
     constructor() {}
     
+    /**
+    * Justifies a single line of text by adding spaces between words.
+    */
     private justifyLine(line: string): string {
         const words = line.split(' ');
         const numberOfWord = words.length
@@ -28,6 +31,9 @@ export default class JustifyUtils {
         return justifiedLine.trim()
     }
 
+    /**
+    * Justifies a paragraph of text by formatting lines to fit a specified width.
+    */
     private justifyParagraph(paragraph: string): string {
         const words = paragraph.split(' ');
     
@@ -49,6 +55,9 @@ export default class JustifyUtils {
         return justifiedParagraph
     }
 
+    /**
+    * Justifies the entire text by formatting paragraphs and lines to fit a specified width.
+    */
     justifyText(text: string): string {
         const paragraphs = text.split("\n");
         const numberOfParagraph = paragraphs.length
@@ -65,9 +74,12 @@ export default class JustifyUtils {
         return justifiedText
     }
 
+    /**
+     * Checks if each word in the provided array of words is valid, i.e., if its length does not exceed a specified limit.
+     */
     checkIfTextValid(words: string[]): boolean {
         for (var i = 0; i < words.length; i++) {
-            if (words[i].length > 80)
+            if (words[i].length > JUSTIFY_SIZE)
                 return false
         }
         return true

@@ -11,13 +11,16 @@ export default class AuthenticationService {
         this.authenticationUtils = new AuthenticationUtils()
     }
     
-    generateToken = async (userEmail: string): Promise<string> => {
+    /**
+    * Generates a JWT for a new user with the provided email and saves the user details in the database.
+    */
+    generateTokenAndSaveNewUser = async (userEmail: string): Promise<string> => {
         try {
             const user = await User.findOne({email: userEmail})
             if (user) {
                 throw new EmailAlreadyUseError("this email is already used")
             }
-            const token = this.authenticationUtils.generateJwtToken({email: userEmail})
+            const token = this.authenticationUtils.generateJwt({email: userEmail})
             var newUser = User.build({
                 email: userEmail,
                 token: token,

@@ -15,6 +15,9 @@ export default class JustifyController {
         this.justifyService = new JustifyService();
     }
     
+    /**
+    * Handles the request to justify text using the provided token.
+    */
     justifyText = async (req: Request, res: Response) => {
         try {
             const text = req.body;

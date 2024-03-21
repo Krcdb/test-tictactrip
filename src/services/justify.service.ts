@@ -13,6 +13,10 @@ export default class JustifyService {
         this.justifyUtils = new JustifyUtils();
     }
     
+    /**
+     * This function justifies the provided text while considering constraints
+     * related to the user, such as daily word limits.
+     */
     justifyText = async(token: string, textToJustify: string): Promise<string> => {
         const words = textToJustify.split(' ')
         const numberOfWords = words.length
@@ -36,9 +40,10 @@ export default class JustifyService {
         }
 
         const justifiedText = this.justifyUtils.justifyText(textToJustify);
-
         user.dailyLimit.dailyWord += numberOfWords;
-        await user.save()
+        
+        await user.save();
+
         return justifiedText
     }
 }
