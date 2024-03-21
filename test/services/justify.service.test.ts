@@ -33,11 +33,15 @@ const userDailyLimit = User.build({
     }
 });
 
+const userMock = sinon.mock(User)
+
 describe("Justify service", async function() {
 
-    /*it("test justifyText check WordTooLongError",async function() {
-        const userMock = sinon.mock(User)
+    after(function() {
+        userMock.restore()
+    })
 
+    /*it("test justifyText check WordTooLongError",async function() {
         userMock.expects(("findOne")).resolves(user)
         sinon.stub(user, "save").returns(undefined)
         
@@ -46,13 +50,9 @@ describe("Justify service", async function() {
         await justifyService.justifyText("cool-token", bigInputText).catch((error) => {
             expect(error.message).to.equal("a word is more than 80 char")
         })
-
-        userMock.restore()
     })*/
 
     it("test justifyText check NoUserFoundError",async function() {
-        const userMock = sinon.mock(User)
-
         userMock.expects(("findOne")).resolves(null)
         sinon.stub(user, "save").returns(undefined)
         
@@ -61,7 +61,5 @@ describe("Justify service", async function() {
         await justifyService.justifyText("cool-token", bigInputText).catch((error) => {
             expect(error.message).to.equal(`no user found for the token cool-token`)
         })
-
-        userMock.restore()
     })
 })
