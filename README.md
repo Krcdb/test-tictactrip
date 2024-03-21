@@ -12,6 +12,25 @@ There is a limit of 80.000 words per day
 
 The user first need to get an authentication token from the authentication endpoint
 
+## Installation
+
+Use npm to install
+
+```bash
+npm install
+```
+Start local server
+
+```bash
+npm run start
+```
+
+Launch test
+```bash
+npm test
+```
+
+
 # API
 
 The API can be access with this URL : `https://test-tictactrip.onrender.com`
@@ -46,6 +65,8 @@ Content-Type: application/json
 ```
 
 ## Justify text
+
+This endpoint allows you to justify a text per line of 80 characters
 
 ### Request
 
