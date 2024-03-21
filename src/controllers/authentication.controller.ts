@@ -17,13 +17,14 @@ export default class AuthenticationController {
             const token = await this.authenticationService.generateToken(email)
             return res.status(200).json({token: token});
         } catch (err) {
-            console.log(err)
             if (err instanceof EmailAlreadyUseError) {
                 console.log(`${err.name} : ${err.message}`);
                 return res.status(409).json({Err: err.message});
             }
             else {
-                return res.status(500)
+                if (err instanceof Error)
+                    console.log(err.message)
+                return res.status(500).json({ Error: "Error while requesting token" });
             }
         }
     }
