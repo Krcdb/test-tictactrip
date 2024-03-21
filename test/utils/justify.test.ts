@@ -4,7 +4,7 @@ import JustifyUtils from "../../src/utils/justify.utils"
 
 import { bigInputText, bigInputTextResult } from "../dataSet";
 
-describe("Justify test", function() {
+describe("Justify Utils", function() {
 
     it("test with empty string", function() {
         const justify = new JustifyUtils();
