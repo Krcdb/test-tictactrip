@@ -36,9 +36,11 @@ describe("Authentication service", async function() {
         sinon.stub(User, "findOne").returns(null)
         sinon.stub(newUser, "save").returns(undefined)
 
+        
+        //this doest mock the private property of AuthenticationService..
+        //so i cant mock the result of generateJwt
         //
-        /*this doest mock the private property of AuthenticationService..
-        /*so i cant mock the result of generateJwt
+        //i could pass the property in public but this is against the purpose of a class
         //
         //sinon.stub(authenticationUtils, "generateJwt").returns('nice-token')
 
