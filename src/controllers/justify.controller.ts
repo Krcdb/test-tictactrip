@@ -46,7 +46,7 @@ export default class JustifyController {
             else {
                 if (err instanceof Error)
                     console.log(err.message)
-                return res.status(500).json({ Error: err });
+                return res.status(500).json({ Error: "Error while justifying text" });
             }
         }
     }
